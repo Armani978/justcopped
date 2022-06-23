@@ -1,25 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import Nav from './components/Nav';
+import { Route , Routes } from "react-router"
+import  Login  from "./views/Login";
+import  Register  from "./views/Register";
+import  Marketplace  from "./views/Marketplace";
+import  AddProduct  from "./views/AddProduct";
+import ChatPage from './views/Chat';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "react-bootstrap"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { AuthContextProvider } from './context/AuthContext';
+import React from 'react';
+import { StreamChat } from 'stream-chat';
+import { Chat, Channel, ChannelHeader, MessageInput, MessageList, Thread, Window } from 'stream-chat-react';
+
+import 'stream-chat-react/dist/css/index.css';
+
+const chatClient = StreamChat.getInstance('qpzbntjmn4m9');
+const userToken = 'ejjwvz4vzyvtfer4sehgya32bp4ecrt5nxc8hkjs6e7meysdtkkctbqpms3pxd32';
+
+chatClient.connectUser(
+  {
+    id: 'aj_e4346238-3396-4c6b-ae14-c724bbc50181',
+    name: 'aj',
+    image: 'https://getstream.io/random_png/?id=flat-cell-4&name=flat-cell-4',
+  },
+  userToken,
+);
+
+const channel = chatClient.channel('messaging', 'custom_channel_id', {
+  // add as many custom fields as you'd like
+  image: 'https://res.cloudinary.com/armaniross/image/upload/v1655611333/JUSTCopped_bsckn6.jpg',
+  name: 'JustCopped',
+  members: ['aj'],
+  
+});
+
+const App = () => (
+  
+  <Chat client={chatClient} theme='messaging light'>
+   <AuthContextProvider>
+      <Nav />
+     <Routes>
+           <Route path="/" element={<Marketplace />} />
+         <Route path="/login" element={<Login />} />
+         <Route path="/register" element={<Register />} />
+         <Route path="/marketplace" element={<Marketplace />} />
+         <Route path="/add" element={<AddProduct />} />
+/        <Route path="/Chat " element={<ChatPage />} />
+        
+
+       </Routes>
+       </AuthContextProvider>
+    <Channel channel={channel}>
+      <Window>
+        <ChannelHeader />
+        <MessageList />
+        <MessageInput />
+      </Window>
+      <Thread />
+    </Channel>
+  </Chat>
+);
 
 export default App;
