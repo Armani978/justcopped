@@ -14,6 +14,10 @@ const ProductList = () => {
       console.log(data.docs)
       setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     }
+    const deleteProduct = async (id) => {
+      await ProductDataService.deleteProduct(id);
+      getProducts();
+    };
   
   return (
     <Table striped bordered hover>
@@ -35,6 +39,9 @@ const ProductList = () => {
             <td>{doc.price}</td>
             <td>{doc.image}</td>
             <td>{doc.description}</td>
+
+            <td></td>
+            
           </tr>
         )})}
       </tbody>

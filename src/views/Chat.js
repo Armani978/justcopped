@@ -16,8 +16,8 @@ chatClient.connectUser(
   userToken,
 );
 
-const channel = chatClient.channel('messaging', 'custom_channel_id', {
-  // add as many custom fields as you'd like
+const channel = chatClient.channel('messaging', 'justcopped', {
+  
   
   name: 'JustCopped',
   members: ['flat-cell-4'],

@@ -7,8 +7,11 @@ import  AddProduct  from "./views/AddProduct";
 import ChatPage from './views/Chat';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-bootstrap"
+import Logout from './components/Logout';
 
 import { AuthContextProvider } from './context/AuthContext';
+
+
 import React from 'react';
 import { StreamChat } from 'stream-chat';
 import { Chat, Channel, ChannelHeader, MessageInput, MessageList, Thread, Window } from 'stream-chat-react';
@@ -16,12 +19,12 @@ import { Chat, Channel, ChannelHeader, MessageInput, MessageList, Thread, Window
 import 'stream-chat-react/dist/css/index.css';
 
 const chatClient = StreamChat.getInstance('qpzbntjmn4m9');
-const userToken = 'ejjwvz4vzyvtfer4sehgya32bp4ecrt5nxc8hkjs6e7meysdtkkctbqpms3pxd32';
+const userToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiZmxhdC1jZWxsLTQifQ.PEOg6RL95iqlE4w63uMzQSi0D-AWO4CsOziTGkJCgWg';
 
 chatClient.connectUser(
   {
-    id: 'aj_e4346238-3396-4c6b-ae14-c724bbc50181',
-    name: 'aj',
+    id: 'flat-cell-4',
+    name: 'flat-cell-4',
     image: 'https://getstream.io/random_png/?id=flat-cell-4&name=flat-cell-4',
   },
   userToken,
@@ -29,10 +32,9 @@ chatClient.connectUser(
 
 const channel = chatClient.channel('messaging', 'custom_channel_id', {
   // add as many custom fields as you'd like
-  image: 'https://res.cloudinary.com/armaniross/image/upload/v1655611333/JUSTCopped_bsckn6.jpg',
-  name: 'JustCopped',
-  members: ['aj'],
-  
+  image: 'https://www.drupal.org/files/project-images/react.png',
+  name: '',
+  members: ['flat-cell-4'],
 });
 
 const App = () => (
@@ -46,8 +48,8 @@ const App = () => (
          <Route path="/register" element={<Register />} />
          <Route path="/marketplace" element={<Marketplace />} />
          <Route path="/add" element={<AddProduct />} />
-/        <Route path="/Chat " element={<ChatPage />} />
-        
+       <Route path="/Chat " element={<ChatPage />} />
+         <Route path="/logout" component={<Logout />} />
 
        </Routes>
        </AuthContextProvider>

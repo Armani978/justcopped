@@ -15,7 +15,7 @@ import {Link} from 'react-router-dom'
 import { styled, useTheme } from '@mui/material/styles';
 import SettingsIcon from '@mui/icons-material/Settings';
 
-const pages = ['Marketplace', 'Login', 'Register', 'Add'];
+const pages = ['chat', 'Login', 'Register', 'Add'];
 const settings = ['Profile', 'Account', 'EditProfile', 'Logout'];
 
 const Nav = () => {
